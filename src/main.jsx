@@ -6,92 +6,92 @@ import './styles.css';
 const products = [
   {
     id: 1,
-    name: '네온 컴포트 하네스',
+    name: 'Neon Comfort Harness',
     category: 'dog',
-    subcategory: '산책용품',
-    price: 28900,
+    subcategory: 'Walk Essentials',
+    price: 28,
     rating: 4.8,
     reviews: 142,
     image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=80',
     badge: 'BEST',
-    description: '부드러운 메쉬 안감과 안정적인 핏으로 매일 산책에 좋은 강아지 하네스입니다.',
+    description: 'A soft mesh-lined dog harness with a secure fit, perfect for everyday walks.',
     options: ['XS', 'S', 'M', 'L']
   },
   {
     id: 2,
-    name: '고양이 우드 스크래처',
+    name: 'Wood Cat Scratcher',
     category: 'cat',
-    subcategory: '놀이용품',
-    price: 34900,
+    subcategory: 'Toys & Play',
+    price: 34,
     rating: 4.7,
     reviews: 89,
     image: 'https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&w=900&q=80',
     badge: 'NEW',
-    description: '인테리어와 잘 어울리는 우드 프레임 스크래처입니다.',
+    description: 'A wood-frame scratcher that blends beautifully with modern interiors.',
     options: ['Natural', 'Dark Wood']
   },
   {
     id: 3,
-    name: '프리미엄 오리 져키',
+    name: 'Premium Duck Jerky',
     category: 'dog',
-    subcategory: '간식',
-    price: 12900,
+    subcategory: 'Treats',
+    price: 12,
     rating: 4.9,
     reviews: 231,
     image: 'https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?auto=format&fit=crop&w=900&q=80',
     badge: 'HOT',
-    description: '기호성이 좋은 오리 단백질 간식입니다. 훈련 보상용으로 좋아요.',
+    description: 'A tasty duck protein treat that works well as a training reward.',
     options: ['80g', '160g']
   },
   {
     id: 4,
-    name: '스테인리스 물그릇 세트',
+    name: 'Stainless Bowl Set',
     category: 'all',
-    subcategory: '식기',
-    price: 21900,
+    subcategory: 'Bowls & Feeders',
+    price: 22,
     rating: 4.6,
     reviews: 57,
     image: 'https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=900&q=80',
     badge: 'SALE',
-    description: '강아지와 고양이 모두 사용할 수 있는 미끄럼 방지 식기 세트입니다.',
+    description: 'A non-slip bowl set suitable for both dogs and cats.',
     options: ['Single', 'Double']
   },
   {
     id: 5,
-    name: '캣닢 마우스 토이 3종',
+    name: 'Catnip Mouse Toy Set',
     category: 'cat',
-    subcategory: '놀이용품',
-    price: 9900,
+    subcategory: 'Toys & Play',
+    price: 10,
     rating: 4.5,
     reviews: 74,
     image: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=900&q=80',
     badge: 'PICK',
-    description: '사냥 본능을 자극하는 가벼운 캣닢 장난감 세트입니다.',
+    description: 'A lightweight catnip toy set designed to spark your cat’s hunting instincts.',
     options: ['3pcs']
   },
   {
     id: 6,
-    name: '구름 쿠션 베드',
+    name: 'Cloud Cushion Bed',
     category: 'all',
-    subcategory: '하우스/침대',
-    price: 45900,
+    subcategory: 'Beds & Houses',
+    price: 46,
     rating: 4.8,
     reviews: 118,
     image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80',
     badge: 'COMFY',
-    description: '폭신한 충전재로 편안한 휴식을 돕는 포근한 베드입니다.',
+    description: 'A cozy bed with plush filling for comfortable daily rest.',
     options: ['S', 'M', 'L']
   }
 ];
 
 const categories = [
-  { id: 'all', label: '전체', helper: '강아지·고양이 공용' },
-  { id: 'dog', label: '강아지', helper: '산책, 간식, 장난감' },
-  { id: 'cat', label: '고양이', helper: '스크래처, 캣닢, 식기' }
+  { id: 'all', label: 'All', helper: 'For dogs & cats' },
+  { id: 'dog', label: 'Dogs', helper: 'Walks, treats, toys' },
+  { id: 'cat', label: 'Cats', helper: 'Scratchers, catnip, bowls' }
 ];
 
 function formatPrice(value) {
-  return new Intl.NumberFormat('ko-KR').format(value) + '원';
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
 }
 
 function App() {
@@ -122,7 +122,7 @@ function App() {
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shippingFee = subtotal === 0 || subtotal >= 30000 ? 0 : 3500;
+  const shippingFee = subtotal === 0 || subtotal >= 50 ? 0 : 5;
   const total = subtotal + shippingFee;
 
   const showToast = (message) => {
@@ -140,7 +140,7 @@ function App() {
       return [...current, { ...product, key, option: selectedOption, quantity: selectedQuantity }];
     });
     setCartOpen(true);
-    showToast(`${product.name} ${selectedQuantity}개가 장바구니에 담겼어요.`);
+    showToast(`${product.name} x${selectedQuantity} added to your cart.`);
   };
 
   const updateCartQuantity = (key, nextQuantity) => {
@@ -178,16 +178,16 @@ function App() {
         <section className="hero-section" aria-labelledby="hero-title">
           <div className="hero-copy">
             <span className="eyebrow"><PawPrint className="icon" aria-hidden="true" /> COCOPET</span>
-            <h1 id="hero-title">따뜻한 펫 라이프를 위한 네온 그린 쇼핑몰</h1>
-            <p>강아지와 고양이 용품을 카테고리별로 찾고, 상세 옵션과 리뷰까지 한 화면에서 확인할 수 있는 프론트엔드 MVP입니다.</p>
+            <h1 id="hero-title">A Neon Green Shop for Cozy Pet Living</h1>
+            <p>A frontend MVP where shoppers can browse dog and cat products by category, review product details, choose options, and add items to cart.</p>
             <div className="hero-actions">
-              <a className="btn" href="#products" aria-label="상품 둘러보기">상품 둘러보기</a>
-              <a className="btn ghost" href="#detail" aria-label="상품 상세 보기">상세 페이지 보기</a>
+              <a className="btn" href="#products" aria-label="Browse products">Browse Products</a>
+              <a className="btn ghost" href="#detail" aria-label="View product details">View Product Details</a>
             </div>
           </div>
 
-          <div className="hero-card" aria-label="추천 상품 미리보기">
-            <img src={selectedProduct.image} alt={`${selectedProduct.name} 상품 사진`} />
+          <div className="hero-card" aria-label="Featured product preview">
+            <img src={selectedProduct.image} alt={`${selectedProduct.name} product photo`} />
             <div className="hero-card-content">
               <span>{selectedProduct.badge}</span>
               <h2>{selectedProduct.name}</h2>
@@ -199,7 +199,7 @@ function App() {
         <section className="category-section" aria-labelledby="category-title">
           <div className="section-heading">
             <p>Shop by pet</p>
-            <h2 id="category-title">카테고리 선택</h2>
+            <h2 id="category-title">Choose a Category</h2>
           </div>
           <div className="category-grid" role="list">
             {categories.map((category) => (
@@ -207,7 +207,7 @@ function App() {
                 key={category.id}
                 className={`category-card ${activeCategory === category.id ? 'active' : ''}`}
                 onClick={() => setActiveCategory(category.id)}
-                aria-label={`${category.label} 카테고리 보기`}
+                aria-label={`View ${category.label} category`}
                 aria-pressed={activeCategory === category.id}
               >
                 <span>{category.label}</span>
@@ -221,27 +221,27 @@ function App() {
           <div className="products-header">
             <div className="section-heading">
               <p>Find your item</p>
-              <h2 id="products-title">상품 리스트</h2>
+              <h2 id="products-title">Product List</h2>
             </div>
 
-            <div className="toolbar" aria-label="검색 및 정렬 도구">
+            <div className="toolbar" aria-label="Search and sort tools">
               <label className="search-box">
                 <Search className="icon" aria-hidden="true" />
-                <span className="sr-only">상품 검색</span>
+                <span className="sr-only">Product search</span>
                 <input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="하네스, 간식, 스크래처 검색"
+                  placeholder="Search harness, treats, scratcher"
                 />
               </label>
               <label className="sort-box">
                 <SlidersHorizontal className="icon" aria-hidden="true" />
-                <span className="sr-only">상품 정렬</span>
-                <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="상품 정렬 선택">
-                  <option value="popular">인기순</option>
-                  <option value="rating">리뷰 높은순</option>
-                  <option value="low">낮은 가격순</option>
-                  <option value="high">높은 가격순</option>
+                <span className="sr-only">Product sorting</span>
+                <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Select product sorting">
+                  <option value="popular">Most Popular</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="low">Price: Low to High</option>
+                  <option value="high">Price: High to Low</option>
                 </select>
               </label>
             </div>
@@ -255,7 +255,7 @@ function App() {
 
           {filteredProducts.length === 0 && (
             <div className="empty-state" role="status">
-              검색 결과가 없습니다. 다른 키워드나 카테고리를 선택해주세요.
+              No results found. Try another keyword or category.
             </div>
           )}
         </section>
@@ -294,22 +294,22 @@ function App() {
 function Header({ mobileOpen, setMobileOpen, cartCount, onCartOpen, closeMobileMenu }) {
   return (
     <header className="site-header">
-      <a href="#top" className="brand" aria-label="COCOPET 홈" onClick={closeMobileMenu}>
+      <a href="#top" className="brand" aria-label="COCOPET home" onClick={closeMobileMenu}>
         <PawPrint className="icon" aria-hidden="true" />
         <span>COCOPET</span>
       </a>
-      <nav className={mobileOpen ? 'nav open' : 'nav'} aria-label="주요 메뉴">
+      <nav className={mobileOpen ? 'nav open' : 'nav'} aria-label="Main menu">
         <a href="#products" onClick={closeMobileMenu}>Products</a>
         <a href="#detail" onClick={closeMobileMenu}>Detail</a>
-        <a href="#about" onClick={closeMobileMenu}>회사 소개</a>
+        <a href="#about" onClick={closeMobileMenu}>About</a>
         <a href="#contact" onClick={closeMobileMenu}>Contact</a>
         <a href="#shipping" onClick={closeMobileMenu}>Shipping</a>
       </nav>
-      <button className="icon-button cart-button" onClick={onCartOpen} aria-label={`장바구니 열기, 현재 ${cartCount}개 상품`}>
+      <button className="icon-button cart-button" onClick={onCartOpen} aria-label={`Open cart, currently ${cartCount} item(s)`}>
         <ShoppingCart className="icon" aria-hidden="true" />
-        {cartCount > 0 && <span className="cart-badge" aria-label={`장바구니 상품 ${cartCount}개`}>{cartCount}</span>}
+        {cartCount > 0 && <span className="cart-badge" aria-label={`Cart item count: ${cartCount}`}>{cartCount}</span>}
       </button>
-      <button className="mobile-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? '메뉴 닫기' : '메뉴 열기'} aria-expanded={mobileOpen}>
+      <button className="mobile-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? 'Close menu' : 'Open menu'} aria-expanded={mobileOpen}>
         {mobileOpen ? <X className="icon" aria-hidden="true" /> : <Menu className="icon" aria-hidden="true" />}
       </button>
     </header>
@@ -319,11 +319,11 @@ function Header({ mobileOpen, setMobileOpen, cartCount, onCartOpen, closeMobileM
 function ProductCard({ product, onOpen, onAddToCart }) {
   return (
     <article className="product-card">
-      <button className="wishlist" aria-label={`${product.name} 찜하기`}>
+      <button className="wishlist" aria-label={`Add ${product.name} to wishlist`}>
         <Heart className="icon" aria-hidden="true" />
       </button>
-      <button className="product-image-button" onClick={() => onOpen(product)} aria-label={`${product.name} 상세 보기`}>
-        <img src={product.image} alt={`${product.name} 상품 사진`} />
+      <button className="product-image-button" onClick={() => onOpen(product)} aria-label={`View ${product.name} details`}>
+        <img src={product.image} alt={`${product.name} product photo`} />
       </button>
       <div className="product-info">
         <div className="product-meta">
@@ -331,14 +331,14 @@ function ProductCard({ product, onOpen, onAddToCart }) {
           <small>{product.subcategory}</small>
         </div>
         <h3>{product.name}</h3>
-        <div className="rating" aria-label={`평점 ${product.rating}, 리뷰 ${product.reviews}개`}>
+        <div className="rating" aria-label={`Rating ${product.rating}, ${product.reviews} reviews`}>
           <Star className="icon" aria-hidden="true" />
           <span>{product.rating}</span>
           <small>({product.reviews})</small>
         </div>
         <div className="product-bottom">
           <strong>{formatPrice(product.price)}</strong>
-          <button className="btn small" onClick={() => onAddToCart(product)} aria-label={`${product.name} 장바구니에 담기`}>담기</button>
+          <button className="btn small" onClick={() => onAddToCart(product)} aria-label={`Add ${product.name} to cart`}>Add</button>
         </div>
       </div>
     </article>
@@ -349,52 +349,52 @@ function ProductDetail({ product, option, setOption, quantity, setQuantity, onAd
   return (
     <section className="detail-section" id="detail" aria-labelledby="detail-title">
       <div className="detail-media">
-        <button className="back-chip" aria-label="상품 리스트로 돌아가기" onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}>
-          <ChevronLeft className="icon" aria-hidden="true" /> 리스트로
+        <button className="back-chip" aria-label="Back to product list" onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}>
+          <ChevronLeft className="icon" aria-hidden="true" /> Back to List
         </button>
-        <img src={product.image} alt={`${product.name} 상세 상품 사진`} />
+        <img src={product.image} alt={`${product.name} detailed product photo`} />
       </div>
 
       <div className="detail-copy">
         <span className="eyebrow">Product detail</span>
         <h2 id="detail-title">{product.name}</h2>
         <p>{product.description}</p>
-        <div className="rating large" aria-label={`평점 ${product.rating}, 리뷰 ${product.reviews}개`}>
+        <div className="rating large" aria-label={`Rating ${product.rating}, ${product.reviews} reviews`}>
           <Star className="icon" aria-hidden="true" />
           <span>{product.rating}</span>
-          <small>리뷰 {product.reviews}개</small>
+          <small>{product.reviews} reviews</small>
         </div>
         <strong className="detail-price">{formatPrice(product.price)}</strong>
 
         <div className="form-row">
-          <label htmlFor="option-select">옵션 선택</label>
+          <label htmlFor="option-select">Choose Option</label>
           <select id="option-select" value={option} onChange={(event) => setOption(event.target.value)}>
             {product.options.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
         </div>
 
         <div className="form-row">
-          <label htmlFor="quantity-select">수량 선택</label>
+          <label htmlFor="quantity-select">Choose Quantity</label>
           <div className="quantity-control">
-            <button aria-label="수량 줄이기" onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
-            <input id="quantity-select" value={quantity} readOnly aria-label="선택된 수량" />
-            <button aria-label="수량 늘리기" onClick={() => setQuantity(quantity + 1)}>+</button>
+            <button aria-label="Decrease quantity" onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
+            <input id="quantity-select" value={quantity} readOnly aria-label="Selected quantity" />
+            <button aria-label="Increase quantity" onClick={() => setQuantity(quantity + 1)}>+</button>
           </div>
         </div>
 
         <div className="detail-actions">
-          <button className="btn" onClick={() => onAddToCart(product, option, quantity)} aria-label={`${product.name} 바로 구매하기`}>바로 구매</button>
-          <button className="btn ghost" onClick={() => onAddToCart(product, option, quantity)} aria-label={`${product.name} 장바구니에 담기`}>장바구니</button>
+          <button className="btn" onClick={() => onAddToCart(product, option, quantity)} aria-label={`Buy ${product.name} now`}>Buy Now</button>
+          <button className="btn ghost" onClick={() => onAddToCart(product, option, quantity)} aria-label={`Add ${product.name} to cart`}>Add to Cart</button>
         </div>
 
         <div className="info-list" id="shipping">
           <div>
             <Truck className="icon" aria-hidden="true" />
-            <div><strong>배송 안내</strong><p>3만원 이상 무료배송, 평균 1–3영업일 내 출고</p></div>
+            <div><strong>Shipping Info</strong><p>Free shipping on orders over $50. Ships in 1–3 business days on average.</p></div>
           </div>
           <div>
             <RotateCcw className="icon" aria-hidden="true" />
-            <div><strong>반품 안내</strong><p>수령 후 7일 이내 미사용 상품 교환/반품 가능</p></div>
+            <div><strong>Returns Info</strong><p>Unused items can be exchanged or returned within 7 days of delivery.</p></div>
           </div>
         </div>
       </div>
@@ -407,15 +407,15 @@ function AboutSection() {
     <section className="about-section" id="about" aria-labelledby="about-title">
       <div className="section-heading">
         <p>About Cocopet</p>
-        <h2 id="about-title">따뜻한 취향을 고르는 펫 라이프 팀</h2>
+        <h2 id="about-title">A Pet Lifestyle Team with a Warm Eye for Detail</h2>
       </div>
       <div className="content-card about-card">
         <Users className="icon" aria-hidden="true" />
         <div>
           <p>
-            COCOPET은 반려동물과 보호자의 일상을 더 편하고 예쁘게 만드는 제품을 큐레이션하는 작은 브랜드입니다.
-            Lena Team은 사용감, 디자인, 가격의 균형을 중요하게 보고 강아지와 고양이에게 필요한 기본 아이템부터
-            선물하기 좋은 제품까지 정성스럽게 소개합니다.
+            COCOPET is a small curated pet brand built to make everyday life with pets more comfortable, stylish, and joyful.
+            Lena Team focuses on the balance between usability, design, and price, carefully introducing everyday essentials
+            for dogs and cats as well as thoughtful gift-worthy finds.
           </p>
         </div>
       </div>
@@ -428,17 +428,17 @@ function ContactSection() {
     <section className="contact-section" id="contact" aria-labelledby="contact-title">
       <div className="section-heading">
         <p>Contact</p>
-        <h2 id="contact-title">문의하기</h2>
+        <h2 id="contact-title">Contact Us</h2>
       </div>
       <div className="contact-grid">
-        <a className="contact-card" href="mailto:westshorestay764@gmail.com" aria-label="이메일로 문의하기">
+        <a className="contact-card" href="mailto:westshorestay764@gmail.com" aria-label="Contact by email">
           <Mail className="icon" aria-hidden="true" />
           <div>
             <strong>Email</strong>
             <p>westshorestay764@gmail.com</p>
           </div>
         </a>
-        <a className="contact-card" href="tel:12138459221" aria-label="전화로 문의하기">
+        <a className="contact-card" href="tel:12138459221" aria-label="Contact by phone">
           <Phone className="icon" aria-hidden="true" />
           <div>
             <strong>Phone</strong>
@@ -454,13 +454,13 @@ function CartDrawer({ isOpen, onClose, items, subtotal, shippingFee, total, upda
   return (
     <>
       <div className={isOpen ? 'drawer-backdrop open' : 'drawer-backdrop'} onClick={onClose} aria-hidden="true" />
-      <aside className={isOpen ? 'cart-drawer open' : 'cart-drawer'} aria-label="장바구니" aria-hidden={!isOpen}>
+      <aside className={isOpen ? 'cart-drawer open' : 'cart-drawer'} aria-label="Shopping cart" aria-hidden={!isOpen}>
         <div className="drawer-header">
           <div>
             <p>Shopping cart</p>
-            <h2>장바구니</h2>
+            <h2>Your Cart</h2>
           </div>
-          <button className="icon-button" onClick={onClose} aria-label="장바구니 닫기">
+          <button className="icon-button" onClick={onClose} aria-label="Close cart">
             <X className="icon" aria-hidden="true" />
           </button>
         </div>
@@ -468,23 +468,23 @@ function CartDrawer({ isOpen, onClose, items, subtotal, shippingFee, total, upda
         {items.length === 0 ? (
           <div className="cart-empty">
             <ShoppingCart className="icon" aria-hidden="true" />
-            <strong>장바구니가 비어 있어요.</strong>
-            <p>상품 카드의 담기 버튼을 눌러 테스트해보세요.</p>
+            <strong>Your cart is empty.</strong>
+            <p>Try adding an item from a product card.</p>
           </div>
         ) : (
           <div className="cart-list">
             {items.map((item) => (
               <div className="cart-item" key={item.key}>
-                <img src={item.image} alt={`${item.name} 장바구니 이미지`} />
+                <img src={item.image} alt={`${item.name} cart image`} />
                 <div className="cart-item-info">
                   <strong>{item.name}</strong>
-                  <p>옵션: {item.option}</p>
+                  <p>Option: {item.option}</p>
                   <span>{formatPrice(item.price)}</span>
                   <div className="cart-item-actions">
-                    <button aria-label={`${item.name} 수량 줄이기`} onClick={() => updateCartQuantity(item.key, item.quantity - 1)}><Minus className="icon" aria-hidden="true" /></button>
+                    <button aria-label={`Decrease ${item.name} quantity`} onClick={() => updateCartQuantity(item.key, item.quantity - 1)}><Minus className="icon" aria-hidden="true" /></button>
                     <b>{item.quantity}</b>
-                    <button aria-label={`${item.name} 수량 늘리기`} onClick={() => updateCartQuantity(item.key, item.quantity + 1)}><Plus className="icon" aria-hidden="true" /></button>
-                    <button className="remove" aria-label={`${item.name} 삭제하기`} onClick={() => removeFromCart(item.key)}><Trash2 className="icon" aria-hidden="true" /></button>
+                    <button aria-label={`Increase ${item.name} quantity`} onClick={() => updateCartQuantity(item.key, item.quantity + 1)}><Plus className="icon" aria-hidden="true" /></button>
+                    <button className="remove" aria-label={`Remove ${item.name}`} onClick={() => removeFromCart(item.key)}><Trash2 className="icon" aria-hidden="true" /></button>
                   </div>
                 </div>
               </div>
@@ -493,11 +493,11 @@ function CartDrawer({ isOpen, onClose, items, subtotal, shippingFee, total, upda
         )}
 
         <div className="cart-summary">
-          <div><span>상품 금액</span><strong>{formatPrice(subtotal)}</strong></div>
-          <div><span>배송비</span><strong>{shippingFee === 0 ? '무료' : formatPrice(shippingFee)}</strong></div>
-          <div className="total-row"><span>총 금액</span><strong>{formatPrice(total)}</strong></div>
-          <button className="btn checkout-btn" disabled={items.length === 0} aria-label="체크아웃으로 이동하기">체크아웃 테스트</button>
-          <p>현재는 프론트엔드 테스트용입니다. 실제 결제는 다음 단계에서 Stripe 또는 Shopify로 연결할 수 있어요.</p>
+          <div><span>Subtotal</span><strong>{formatPrice(subtotal)}</strong></div>
+          <div><span>Shipping</span><strong>{shippingFee === 0 ? 'Free' : formatPrice(shippingFee)}</strong></div>
+          <div className="total-row"><span>Total</span><strong>{formatPrice(total)}</strong></div>
+          <button className="btn checkout-btn" disabled={items.length === 0} aria-label="Go to checkout">Checkout Test</button>
+          <p>This is currently a frontend test. Real checkout can be connected later with Stripe or Shopify.</p>
         </div>
       </aside>
     </>
@@ -508,7 +508,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p>© 2026 COCOPET. Frontend MVP.</p>
-      <p>검색, 필터, 정렬, 장바구니는 현재 클라이언트 더미 데이터로 동작합니다.</p>
+      <p>Search, filtering, sorting, and cart features currently run on client-side demo data.</p>
     </footer>
   );
 }
